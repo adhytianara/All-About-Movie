@@ -24,10 +24,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "TMDB_API_KEY", "\"" + getTmdbApiKey() + "\"")
-        }
-        debug {
-            buildConfigField("String", "TMDB_API_KEY", "\"" + getTmdbApiKey() + "\"")
         }
     }
     compileOptions {
@@ -41,14 +37,6 @@ android {
         viewBinding = true
     }
     dynamicFeatures = [':favorite']
-}
-
-def getTmdbApiKey() {
-    def keysFile = file("keys.properties")
-    def keysProperties = new Properties()
-    keysProperties.load(new FileInputStream(keysFile))
-    def tmdbApiKey = keysProperties['TMDB_API_KEY']
-    return tmdbApiKey
 }
 
 dependencies {
