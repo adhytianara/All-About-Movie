@@ -5,19 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import bangkit.adhytia.allaboutmovie.R
-import bangkit.adhytia.allaboutmovie.core.data.source.local.entity.MovieEntity
+import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
 import bangkit.adhytia.allaboutmovie.databinding.ItemRowFavoriteBinding
-import bangkit.adhytia.allaboutmovie.databinding.ItemRowHomeBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import java.util.*
 
 class FavoriteMovieAdapter : RecyclerView.Adapter<FavoriteMovieAdapter.ListViewHolder>() {
 
-    private var listData = ArrayList<MovieEntity>()
-    var onItemClick: ((MovieEntity) -> Unit)? = null
+    private var listData = ArrayList<Movie>()
+    var onItemClick: ((Movie) -> Unit)? = null
 
-    fun setData(newListData: List<MovieEntity>?) {
+    fun setData(newListData: List<Movie>?) {
         if (newListData == null) return
         listData.clear()
         listData.addAll(newListData)
@@ -38,7 +37,7 @@ class FavoriteMovieAdapter : RecyclerView.Adapter<FavoriteMovieAdapter.ListViewH
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemRowFavoriteBinding.bind(itemView)
-        fun bind(data: MovieEntity) {
+        fun bind(data: Movie) {
             with(binding) {
                 Glide.with(itemView.context)
                     .load(data.posterURL)

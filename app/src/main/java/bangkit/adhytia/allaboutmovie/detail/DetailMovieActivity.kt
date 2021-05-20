@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import bangkit.adhytia.allaboutmovie.R
-import bangkit.adhytia.allaboutmovie.core.data.source.local.entity.MovieEntity
+import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
 import bangkit.adhytia.allaboutmovie.core.ui.ViewModelFactory
 import bangkit.adhytia.allaboutmovie.databinding.ActivityDetailMovieBinding
 import bangkit.adhytia.allaboutmovie.favorite.FavoriteActivity
@@ -31,11 +31,11 @@ class DetailMovieActivity : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(this)
         detailMovieViewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
 
-        val movie = intent.getParcelableExtra<MovieEntity>(EXTRA_DATA)
+        val movie = intent.getParcelableExtra<Movie>(EXTRA_DATA)
         populateMovie(movie)
     }
 
-    private fun populateMovie(movie: MovieEntity?) {
+    private fun populateMovie(movie: Movie?) {
         movie?.let {
             title = movie.title
 

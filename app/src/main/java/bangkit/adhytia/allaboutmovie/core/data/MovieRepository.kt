@@ -1,11 +1,13 @@
 package bangkit.adhytia.allaboutmovie.core.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import bangkit.adhytia.allaboutmovie.core.data.source.local.LocalDataSource
-import bangkit.adhytia.allaboutmovie.core.data.source.local.entity.MovieEntity
 import bangkit.adhytia.allaboutmovie.core.data.source.remote.RemoteDataSource
 import bangkit.adhytia.allaboutmovie.core.data.source.remote.network.ApiResponse
 import bangkit.adhytia.allaboutmovie.core.data.source.remote.response.MovieResponse
+import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
+import bangkit.adhytia.allaboutmovie.core.domain.repository.IMovieRepository
 import bangkit.adhytia.allaboutmovie.core.utils.AppExecutors
 import bangkit.adhytia.allaboutmovie.core.utils.DataMapper
 
@@ -13,7 +15,7 @@ class MovieRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
-) {
+) : IMovieRepository {
 
     companion object {
         @Volatile
@@ -29,13 +31,15 @@ class MovieRepository private constructor(
             }
     }
 
-    fun getAllMovie(): LiveData<Resource<List<MovieEntity>>> =
-        object : NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<MovieEntity>> {
-                return localDataSource.getAllMovie()
+    override fun getAllMovie(): LiveData<Resource<List<Movie>>> =
+        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>(appExecutors) {
+            override fun loadFromDB(): LiveData<List<Movie>> {
+                return Transformations.map(localDataSource.getAllMovie()) {
+                    DataMapper.mapEntitiesToDomain(it)
+                }
             }
 
-            override fun shouldFetch(data: List<MovieEntity>?): Boolean =
+            override fun shouldFetch(data: List<Movie>?): Boolean =
                 data == null || data.isEmpty()
 
             override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>> =
@@ -47,12 +51,15 @@ class MovieRepository private constructor(
             }
         }.asLiveData()
 
-    fun getFavoriteMovie(): LiveData<List<MovieEntity>> {
-        return localDataSource.getFavoriteMovie()
+    override fun getFavoriteMovie(): LiveData<List<Movie>> {
+        return Transformations.map(localDataSource.getFavoriteMovie()) {
+            DataMapper.mapEntitiesToDomain(it)
+        }
     }
 
-    fun setFavoriteMovie(movie: MovieEntity, state: Boolean) {
-        appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movie, state) }
+    override fun setFavoriteMovie(movie: Movie, state: Boolean) {
+        val movieEntity = DataMapper.mapDomainToEntity(movie)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
 }
 

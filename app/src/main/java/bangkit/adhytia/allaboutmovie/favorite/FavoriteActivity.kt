@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import bangkit.adhytia.allaboutmovie.R
 import bangkit.adhytia.allaboutmovie.core.ui.FavoriteMovieAdapter
 import bangkit.adhytia.allaboutmovie.core.ui.ViewModelFactory
 import bangkit.adhytia.allaboutmovie.databinding.ActivityFavoriteBinding
@@ -43,5 +44,7 @@ class FavoriteActivity : AppCompatActivity() {
             setHasFixedSize(true)
             adapter = favoriteMovieAdapter
         }
+
+        title = getString(R.string.my_favorite)
     }
 }

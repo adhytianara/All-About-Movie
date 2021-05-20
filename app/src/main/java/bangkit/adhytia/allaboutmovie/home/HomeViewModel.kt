@@ -1,11 +1,9 @@
 package bangkit.adhytia.allaboutmovie.home
 
 import androidx.lifecycle.ViewModel
-import bangkit.adhytia.allaboutmovie.core.data.MovieRepository
+import bangkit.adhytia.allaboutmovie.core.domain.usecase.MovieUseCase
 
-class HomeViewModel(movieRepository: MovieRepository) : ViewModel() {
-
-    val movie = movieRepository.getAllMovie()
-
+class HomeViewModel(movieUseCase: MovieUseCase) : ViewModel() {
+    val movie = movieUseCase.getAllMovie()
 }
 
