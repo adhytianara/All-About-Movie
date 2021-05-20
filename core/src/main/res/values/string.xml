@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="movie">movie</string>
+    <string name="tvshow">tvshow</string>
+    <string name="popular_movies">Popular movies</string>
+    <string name="popular_tvshow">Popular Tv Show</string>
+    <string name="release_date">"Release date: "</string>
+    <string name="popularity">"Popularity: "</string>
+    <string name="vote_average">"Vote average: "</string>
+    <string name="vote_count">"Vote Count: "</string>
+    <string name="first_air_date">"First air date: "</string>
+    <string name="image_backdrop">Image Backdrop</string>
+    <string name="logo">Logo</string>
+    <string name="poster">Poster</string>
+    <string name="favorite">Favorite</string>
+    <string name="empty_favorite_item">You don\'t have any favorite item yet</string>
+    <string name="my_favorite">My Favorite</string>
+    <string name="favorite_button">Favorite button</string>
+
+    <string name="image_description">Image</string>
+    <string name="text_primary">Sample of title text</string>
+    <string name="text_subtitle">Sample of subtitle text</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_map">Maps</string>
+    <string name="menu_favorite">Favorite</string>
+
+    <string name="title_activity_detail_home">DetailHomeActivity</string>
+    <string name="no_data">Empty data</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
+</resources>

@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import bangkit.adhytia.allaboutmovie.R
+import bangkit.adhytia.allaboutmovie.core.R
+import bangkit.adhytia.allaboutmovie.core.databinding.ItemRowFavoriteBinding
 import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
-import bangkit.adhytia.allaboutmovie.databinding.ItemRowHomeBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import java.util.*
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
+class FavoriteMovieAdapter : RecyclerView.Adapter<FavoriteMovieAdapter.ListViewHolder>() {
 
     private var listData = ArrayList<Movie>()
     var onItemClick: ((Movie) -> Unit)? = null
@@ -25,7 +25,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_row_home, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_favorite, parent, false)
         )
 
     override fun getItemCount() = listData.size
@@ -36,7 +36,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemRowHomeBinding.bind(itemView)
+        private val binding = ItemRowFavoriteBinding.bind(itemView)
         fun bind(data: Movie) {
             with(binding) {
                 Glide.with(itemView.context)
@@ -46,6 +46,8 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
                             .error(R.drawable.ic_error)
                     )
                     .into(imgPoster)
+                tvTitle.text = data.title
+                tvOverview.text = data.overview
             }
         }
 
