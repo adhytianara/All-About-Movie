@@ -12,5 +12,4 @@
         android:gravity="center"
         android:text="@string/something_wrong"
         android:textSize="18sp" />
-
 </RelativeLayout>
