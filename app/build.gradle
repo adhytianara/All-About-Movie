@@ -83,4 +83,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
     implementation "androidx.room:room-ktx:2.3.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+
+    implementation "org.koin:koin-core:2.1.6"
+    implementation "org.koin:koin-android:2.1.6"
+    implementation "org.koin:koin-android-viewmodel:2.1.6"
 }

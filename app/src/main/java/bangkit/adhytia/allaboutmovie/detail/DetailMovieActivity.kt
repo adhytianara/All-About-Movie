@@ -6,30 +6,27 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import bangkit.adhytia.allaboutmovie.R
 import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
-import bangkit.adhytia.allaboutmovie.core.ui.ViewModelFactory
 import bangkit.adhytia.allaboutmovie.databinding.ActivityDetailMovieBinding
 import bangkit.adhytia.allaboutmovie.favorite.FavoriteActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailMovieActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_DATA = "extra_data"
     }
 
-    private lateinit var detailMovieViewModel: DetailMovieViewModel
+    private val detailMovieViewModel: DetailMovieViewModel by viewModel()
+
     private lateinit var binding: ActivityDetailMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val factory = ViewModelFactory.getInstance(this)
-        detailMovieViewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
 
         val movie = intent.getParcelableExtra<Movie>(EXTRA_DATA)
         populateMovie(movie)

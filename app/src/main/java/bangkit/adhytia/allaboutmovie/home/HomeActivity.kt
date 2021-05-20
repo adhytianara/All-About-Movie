@@ -7,19 +7,18 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import bangkit.adhytia.allaboutmovie.R
 import bangkit.adhytia.allaboutmovie.core.data.Resource
 import bangkit.adhytia.allaboutmovie.core.ui.MovieAdapter
-import bangkit.adhytia.allaboutmovie.core.ui.ViewModelFactory
 import bangkit.adhytia.allaboutmovie.databinding.ActivityHomeBinding
 import bangkit.adhytia.allaboutmovie.detail.DetailMovieActivity
 import bangkit.adhytia.allaboutmovie.favorite.FavoriteActivity
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModel()
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -35,9 +34,6 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra(DetailMovieActivity.EXTRA_DATA, selectedData)
             startActivity(intent)
         }
-
-        val factory = ViewModelFactory.getInstance(this)
-        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
         homeViewModel.movie.observe(this, { movie ->
             if (movie != null) {

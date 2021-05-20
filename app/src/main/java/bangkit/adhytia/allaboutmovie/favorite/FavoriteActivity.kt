@@ -4,16 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import bangkit.adhytia.allaboutmovie.R
 import bangkit.adhytia.allaboutmovie.core.ui.FavoriteMovieAdapter
-import bangkit.adhytia.allaboutmovie.core.ui.ViewModelFactory
 import bangkit.adhytia.allaboutmovie.databinding.ActivityFavoriteBinding
 import bangkit.adhytia.allaboutmovie.detail.DetailMovieActivity
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class FavoriteActivity : AppCompatActivity() {
-    private lateinit var favoriteViewModel: FavoriteViewModel
+    private val favoriteViewModel: FavoriteViewModel by viewModel()
 
     private lateinit var binding: ActivityFavoriteBinding
 
@@ -29,9 +28,6 @@ class FavoriteActivity : AppCompatActivity() {
             intent.putExtra(DetailMovieActivity.EXTRA_DATA, selectedData)
             startActivity(intent)
         }
-
-        val factory = ViewModelFactory.getInstance(this)
-        favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
         favoriteViewModel.favoriteMovie.observe(this, { dataMovie ->
             favoriteMovieAdapter.setData(dataMovie)
