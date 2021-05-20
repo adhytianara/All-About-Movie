@@ -3,6 +3,7 @@ package bangkit.adhytia.allaboutmovie.core.utils
 import bangkit.adhytia.allaboutmovie.core.data.source.local.entity.MovieEntity
 import bangkit.adhytia.allaboutmovie.core.data.source.remote.response.MovieResponse
 import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
+import bangkit.adhytia.allaboutmovie.core.utils.Constants.Companion.BASE_IMAGE_URL
 
 object DataMapper {
     fun mapResponsesToEntities(input: List<MovieResponse>): List<MovieEntity> {
@@ -12,8 +13,8 @@ object DataMapper {
                 id = it.id,
                 title = it.title,
                 overview = it.overview,
-                posterURL = it.posterURL,
-                backdropURL = it.backdropURL,
+                posterURL = BASE_IMAGE_URL + it.posterPath,
+                backdropURL = BASE_IMAGE_URL + it.backdropPath,
                 releaseDate = it.releaseDate,
                 voteAverage = it.voteAverage,
                 voteCount = it.voteCount,

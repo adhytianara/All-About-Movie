@@ -23,6 +23,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "TMDB_API_KEY", "\"" + getTmdbApiKey() + "\"")
+        }
+        debug {
+            buildConfigField("String", "TMDB_API_KEY", "\"" + getTmdbApiKey() + "\"")
         }
     }
     compileOptions {
@@ -35,6 +39,14 @@ android {
     buildFeatures {
         viewBinding true
     }
+}
+
+def getTmdbApiKey() {
+    def keysFile = file("keys.properties")
+    def keysProperties = new Properties()
+    keysProperties.load(new FileInputStream(keysFile))
+    def tmdbApiKey = keysProperties['TMDB_API_KEY']
+    return tmdbApiKey
 }
 
 dependencies {
@@ -62,4 +74,8 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.3.0'
     kapt 'androidx.room:room-compiler:2.3.0'
     implementation 'androidx.paging:paging-runtime-ktx:2.1.2'
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 }
