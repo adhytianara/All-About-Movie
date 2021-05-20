@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import bangkit.adhytia.allaboutmovie.R
-import bangkit.adhytia.allaboutmovie.core.ui.FavoriteMovieAdapter
 import bangkit.adhytia.allaboutmovie.detail.DetailMovieActivity
 import bangkit.adhytia.allaboutmovie.favorite.databinding.ActivityFavoriteBinding
 import bangkit.adhytia.allaboutmovie.favorite.di.favoriteModule

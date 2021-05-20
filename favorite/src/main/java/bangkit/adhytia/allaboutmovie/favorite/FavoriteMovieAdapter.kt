@@ -1,12 +1,11 @@
-package bangkit.adhytia.allaboutmovie.core.ui
+package bangkit.adhytia.allaboutmovie.favorite
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import bangkit.adhytia.allaboutmovie.core.R
-import bangkit.adhytia.allaboutmovie.core.databinding.ItemRowFavoriteBinding
 import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
+import bangkit.adhytia.allaboutmovie.favorite.databinding.ItemRowFavoriteBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import java.util.*
