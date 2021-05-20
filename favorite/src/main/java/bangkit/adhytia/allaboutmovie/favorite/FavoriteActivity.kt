@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import bangkit.adhytia.allaboutmovie.R
 import bangkit.adhytia.allaboutmovie.core.ui.FavoriteMovieAdapter
-import bangkit.adhytia.allaboutmovie.databinding.ActivityFavoriteBinding
 import bangkit.adhytia.allaboutmovie.detail.DetailMovieActivity
+import bangkit.adhytia.allaboutmovie.favorite.databinding.ActivityFavoriteBinding
+import bangkit.adhytia.allaboutmovie.favorite.di.favoriteModule
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoriteActivity : AppCompatActivity() {
     private val favoriteViewModel: FavoriteViewModel by viewModel()
@@ -22,6 +24,8 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        loadKoinModules(favoriteModule)
+
         val favoriteMovieAdapter = FavoriteMovieAdapter()
         favoriteMovieAdapter.onItemClick = { selectedData ->
             val intent = Intent(this, DetailMovieActivity::class.java)
@@ -31,8 +35,6 @@ class FavoriteActivity : AppCompatActivity() {
 
         favoriteViewModel.favoriteMovie.observe(this, { dataMovie ->
             favoriteMovieAdapter.setData(dataMovie)
-            binding.viewEmpty.root.visibility =
-                if (dataMovie.isNotEmpty()) View.GONE else View.VISIBLE
         })
 
         with(binding.rvMovie) {

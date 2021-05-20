@@ -2,6 +2,7 @@ package bangkit.adhytia.allaboutmovie.home
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +14,6 @@ import bangkit.adhytia.allaboutmovie.core.data.Resource
 import bangkit.adhytia.allaboutmovie.core.ui.MovieAdapter
 import bangkit.adhytia.allaboutmovie.databinding.ActivityHomeBinding
 import bangkit.adhytia.allaboutmovie.detail.DetailMovieActivity
-import bangkit.adhytia.allaboutmovie.favorite.FavoriteActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -72,8 +72,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_favorite -> {
-                val favorite = Intent(this@HomeActivity, FavoriteActivity::class.java)
-                startActivity(favorite)
+                val uri = Uri.parse("allaboutmovie://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
         return super.onOptionsItemSelected(item)

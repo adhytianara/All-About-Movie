@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AllAboutMovie">
-        <activity android:name=".favorite.FavoriteActivity"></activity>
         <activity android:name=".detail.DetailMovieActivity" />
         <activity android:name=".home.HomeActivity">
             <intent-filter>

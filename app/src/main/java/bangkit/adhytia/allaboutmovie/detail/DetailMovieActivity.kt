@@ -1,6 +1,7 @@
 package bangkit.adhytia.allaboutmovie.detail
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,7 +10,6 @@ import androidx.core.content.ContextCompat
 import bangkit.adhytia.allaboutmovie.R
 import bangkit.adhytia.allaboutmovie.core.domain.model.Movie
 import bangkit.adhytia.allaboutmovie.databinding.ActivityDetailMovieBinding
-import bangkit.adhytia.allaboutmovie.favorite.FavoriteActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -103,8 +103,8 @@ class DetailMovieActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_favorite -> {
-                val favorite = Intent(this@DetailMovieActivity, FavoriteActivity::class.java)
-                startActivity(favorite)
+                val uri = Uri.parse("allaboutmovie://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
         return super.onOptionsItemSelected(item)
