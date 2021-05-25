@@ -11,7 +11,6 @@
     <string name="my_favorite">My Favorite</string>
     <string name="favorite_button">Favorite button</string>
 
-    <string name="no_data">Empty data</string>
     <string name="something_wrong">Oops.. something went wrong</string>
     <string name="title_favorite">Favorite</string>
 </resources>
