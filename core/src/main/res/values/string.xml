@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="movie">movie</string>
-    <string name="tvshow">tvshow</string>
     <string name="popular_movies">Popular movies</string>
-    <string name="popular_tvshow">Popular Tv Show</string>
     <string name="release_date">"Release date: "</string>
     <string name="popularity">"Popularity: "</string>
     <string name="vote_average">"Vote average: "</string>
     <string name="vote_count">"Vote Count: "</string>
-    <string name="first_air_date">"First air date: "</string>
     <string name="image_backdrop">Image Backdrop</string>
-    <string name="logo">Logo</string>
     <string name="poster">Poster</string>
     <string name="favorite">Favorite</string>
     <string name="my_favorite">My Favorite</string>
